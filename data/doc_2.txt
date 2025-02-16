@@ -1,0 +1,28 @@
+### **Documento 2 - Uso do FastAPI para Recuperação de Informações**
+
+Este documento apresenta uma visão detalhada sobre como o **FastAPI** pode ser utilizado para desenvolver APIs eficientes voltadas para recuperação de informações.  
+
+A recuperação de informações é um componente essencial para sistemas que precisam processar grandes volumes de dados e fornecer respostas rápidas e precisas. O FastAPI, devido à sua alta performance e suporte assíncrono, torna-se uma excelente escolha para a implementação desse tipo de sistema.  
+
+### **Principais Benefícios do FastAPI para RAG**  
+
+1. **Alto Desempenho e Baixa Latência**  
+   O FastAPI foi projetado para ser extremamente rápido, utilizando **Python AsyncIO** para lidar com múltiplas requisições simultaneamente. Isso é essencial para sistemas de recuperação de informações, que frequentemente precisam processar várias consultas em tempo real.  
+
+2. **Facilidade na Criação de APIs**  
+   Com suporte a **tipagem automática e validação de dados via Pydantic**, o FastAPI simplifica a criação e manutenção de endpoints para recuperação de dados. Além disso, a documentação interativa automática via **Swagger UI** e **Redoc** facilita a visualização e teste das APIs.  
+
+3. **Segmentação de Texto e Indexação**  
+   Para otimizar a busca, o sistema utiliza uma abordagem baseada em *chunking*, onde cada parágrafo ou trecho do documento é tratado como um bloco separado. Isso melhora a granularidade da recuperação de informações e permite identificar trechos mais relevantes de um documento.  
+
+4. **Integração com Modelos de Aprendizado de Máquina**  
+   O FastAPI pode ser integrado a modelos de **Machine Learning** e **Processamento de Linguagem Natural (NLP)**, como a **SentenceTransformer** para gerar embeddings semânticos e melhorar a precisão das buscas.  
+
+### **Casos de Uso do FastAPI em Recuperação de Informações**  
+
+- **Chatbots Inteligentes**: APIs rápidas para fornecer respostas precisas com base em bases de conhecimento.  
+- **Análise Jurídica**: Recuperação de trechos relevantes em grandes volumes de processos e decisões.  
+- **Sistemas Acadêmicos**: Busca eficiente em artigos, teses e documentos científicos.  
+- **Assistentes Virtuais**: Integração com modelos de IA para melhorar a interação usuário-máquina.  
+
+O FastAPI, combinado com técnicas avançadas de recuperação de informações, possibilita a criação de **sistemas inteligentes, rápidos e escaláveis**, capazes de transformar a forma como acessamos e utilizamos dados.  

@@ -1,0 +1,54 @@
+### **Teste 1 - Consulta sobre Segmentação e Indexação de Textos**
+### Este teste verifica se o sistema consegue recuperar informações sobre **divisão de textos em segmentos menores**, considerando a indexação eficiente para buscas.
+
+POST http://127.0.0.1:8000/query
+Content-Type: application/json
+
+{
+  "query": "Como segmentar textos para indexação eficiente?"
+}
+
+
+### **Teste 2 - Consulta sobre FastAPI na Recuperação de Informações**  
+### Esse teste avalia a capacidade do sistema de identificar o uso do **FastAPI** para desenvolver APIs otimizadas para recuperação de informações.
+
+POST http://127.0.0.1:8000/query
+Content-Type: application/json
+
+{
+  "query": "Como o FastAPI pode ser usado na recuperação de documentos?"
+}
+
+
+### **Teste 3 - Consulta sobre Chunking e Busca Semântica**
+### Aqui verificamos se o sistema é capaz de recuperar explicações sobre **chunking**, uma técnica essencial para buscas semânticas eficientes.
+
+POST http://127.0.0.1:8000/query
+Content-Type: application/json
+
+{
+  "query": "O que é chunking e como ele melhora a busca semântica?"
+}
+
+
+### **Teste 4 - Consulta sobre API de Leitura e Recuperação de Documentos**
+### Esse teste analisa se o sistema consegue identificar a abordagem para construção de uma API que **lê e recupera documentos armazenados**, conforme descrito no Documento 3.
+
+POST http://127.0.0.1:8000/query
+Content-Type: application/json
+
+{
+  "query": "Como estruturar uma API para leitura e recuperação de documentos?"
+}
+
+
+### **Teste 5 - Consulta sobre Aplicações da Recuperação de Informações**  
+### Este teste verifica se o sistema retorna **exemplos práticos de uso** da recuperação de informações com RAG e FastAPI.
+
+POST http://127.0.0.1:8000/query
+Content-Type: application/json
+
+{
+  "query": "Quais são as aplicações da recuperação de informações com RAG?"
+}
+

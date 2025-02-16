@@ -1,0 +1,23 @@
+### Teste 1 - Consulta sobre divisão de textos
+POST http://127.0.0.1:8080/query
+Content-Type: application/json
+
+{
+  "query": "Como dividir textos em segmentos menores?"
+}
+
+### Teste 2 - Consulta sobre FastAPI
+POST http://127.0.0.1:8080/query
+Content-Type: application/json
+
+{
+  "query": "O que é FastAPI?"
+}
+
+### Teste 3 - Consulta sobre chunking
+POST http://127.0.0.1:8080/query
+Content-Type: application/json
+
+{
+  "query": "O que é chunking em processamento de texto?"
+}

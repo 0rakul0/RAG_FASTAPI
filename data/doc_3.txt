@@ -1,0 +1,32 @@
+### **Documento 3 - Construção de uma API para Leitura e Recuperação de Documentos**
+
+Este documento aborda a estruturação de uma API para leitura e recuperação de documentos armazenados, utilizando **FastAPI** em conjunto com a técnica de **Retrieval-Augmented Generation (RAG)**. A combinação dessas tecnologias possibilita a criação de um sistema eficiente para busca e interpretação de informações contidas em documentos extensos.  
+
+### **Desafios da Recuperação de Documentos**  
+
+Em muitos cenários, o simples armazenamento de documentos não é suficiente. É essencial que um sistema consiga:  
+- **Interpretar e segmentar os documentos** de forma eficiente.  
+- **Permitir consultas rápidas** e recuperar trechos relevantes.  
+- **Manter alta precisão na busca**, utilizando técnicas avançadas de NLP.  
+- **Escalar** para lidar com grandes volumes de dados sem comprometer o desempenho.  
+
+### **Estratégia de Implementação com FastAPI e RAG**  
+
+1. **Estruturação da API**  
+   A API será desenvolvida utilizando **FastAPI**, garantindo alto desempenho e suporte assíncrono para múltiplas requisições simultâneas. O FastAPI também permite a fácil integração com modelos de aprendizado de máquina para análise de texto.  
+
+2. **Armazenamento e Processamento de Documentos**  
+   Os documentos serão divididos em *chunks* (trechos menores) para facilitar a indexação e recuperação de informações. Cada chunk será convertido em um vetor numérico (*embedding*), utilizando modelos como **SentenceTransformer**.  
+
+3. **Busca Semântica com RAG**  
+   O modelo RAG permite combinar a busca por similaridade com a geração de respostas contextualizadas. Isso significa que, ao receber uma consulta, o sistema:  
+   - **Recupera os trechos mais relevantes** do banco de documentos.  
+   - **Gera uma resposta baseada nesses trechos**, utilizando um modelo de linguagem avançado.  
+
+4. **Aplicações do Sistema**  
+   - **Consultas jurídicas**: recuperação de informações em grandes bases de processos.  
+   - **Suporte técnico**: busca automatizada em manuais e guias de produtos.  
+   - **Pesquisa acadêmica**: facilitação do acesso a artigos e referências científicas.  
+   - **Automação empresarial**: auxílio na interpretação de contratos e relatórios.  
+
+Com a implementação dessa API, será possível transformar qualquer coleção de documentos em um sistema **interativo, rápido e inteligente**, permitindo uma recuperação de informações otimizada e altamente escalável.  

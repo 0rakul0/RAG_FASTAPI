@@ -1,0 +1,15 @@
+**Documento 1 - Sistema RAG com FastAPI**
+
+Este documento tem como objetivo demonstrar o funcionamento de um sistema de Recuperação Aumentada por Geração (*Retrieval-Augmented Generation* - RAG) utilizando a biblioteca FastAPI.  
+
+A abordagem RAG combina a recuperação de informações relevantes em uma base de conhecimento com a geração de respostas contextuais por meio de um modelo de linguagem. Esse método permite melhorar a precisão e relevância das respostas geradas, tornando-o ideal para aplicações que exigem acesso a informações atualizadas ou contextualmente ricas.  
+
+No contexto deste sistema, a base documental é composta por diversos textos segmentados (*chunks*), facilitando a indexação e recuperação eficiente. O sistema utiliza embeddings para representar semanticamente os documentos e a consulta do usuário, calculando a similaridade entre eles para encontrar a informação mais relevante.  
+
+### **Características do Documento**  
+1. **Introdução ao RAG**: Explicação sobre como o modelo combina recuperação de informações com geração de respostas.  
+2. **Implementação com FastAPI**: Demonstração de como criar uma API eficiente e escalável para interagir com o sistema RAG.  
+3. **Segmentação de Texto**: Uso de *chunks* para otimizar a busca e melhorar a precisão dos resultados.  
+4. **Aplicações Potenciais**: Exemplos de uso em chatbots, suporte técnico, busca jurídica e recuperação de informações acadêmicas.  
+
+A principal vantagem desse sistema é sua capacidade de lidar com grandes volumes de texto e fornecer respostas contextualizadas de maneira dinâmica. Com essa abordagem, é possível desenvolver assistentes inteligentes que não apenas geram respostas baseadas em conhecimento estático, mas também se adaptam a novas informações de forma eficaz.  
