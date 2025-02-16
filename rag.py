@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from service_document import get_docs, get_embeddings, model_embedding
+from service_document import get_docs, get_embeddings, model_embedding, reconstruir_texto
 from sentence_transformers import util
 import torch
 import logging
@@ -10,7 +10,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 
-docs = get_docs()
+docs = get_docs('txt')
 doc_embeddings = get_embeddings()
 
 class QueryRequest(BaseModel):
@@ -18,9 +18,10 @@ class QueryRequest(BaseModel):
 
 app = FastAPI()
 
+
 @app.post("/query")
 async def query_rag(request: QueryRequest):
-    """Busca o documento mais relevante usando embeddings."""
+    """Busca o documento mais relevante usando embeddings e remove sobreposição."""
     query_embedding = model_embedding.encode(request.query, convert_to_tensor=True)
 
     best_doc = None
@@ -38,14 +39,17 @@ async def query_rag(request: QueryRequest):
             best_doc = doc
 
     if best_doc:
+        text_continuo = reconstruir_texto(best_doc["chunks"])
+
         return {
             "best_match": best_doc["id"],
             "avg_score": best_score,
-            "chunks": best_doc["chunks"],
+            "texto_completo": text_continuo,
             "fonte": best_doc["filename"]
         }
     else:
         raise HTTPException(status_code=404, detail="Nenhum documento relevante encontrado.")
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="localhost", port=8080)

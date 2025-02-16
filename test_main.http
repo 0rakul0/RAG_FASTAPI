@@ -11,7 +11,7 @@ POST http://127.0.0.1:8080/query
 Content-Type: application/json
 
 {
-  "query": "O que é FastAPI?"
+  "query": "O que é chunking e como ele melhora a busca semântica?"
 }
 
 ### Teste 3 - Consulta sobre chunking

@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from service_document import get_docs, get_embeddings, model_embedding
+from service_document import get_docs, get_embeddings, model_embedding, reconstruir_texto
 from sentence_transformers import util
 import logging
 from ollama import Client
@@ -15,7 +15,7 @@ client = Client(
 logging.basicConfig(level=logging.INFO)
 
 
-docs = get_docs()
+docs = get_docs('txt')
 doc_embeddings = get_embeddings()
 
 class QueryRequest(BaseModel):
@@ -44,16 +44,24 @@ async def query_rag(request: QueryRequest):
             best_score = avg_score
             best_doc = doc
 
-    promopt = f"Você é uma assistente de IA, que responde baseado somente no documento:\n {best_doc['chunks']}\n\n User:{request.query}\n resposta"
+    if best_doc:
+        texto_completo = reconstruir_texto(best_doc["chunks"])
 
-    try:
-        response = client.chat(model="llama3.1", messages=[
-            {"role": "system", "content": promopt}
-        ])
-        return {"pergunta": request.query,"response":response['message']['content'], "documento_fonte": best_doc["filename"]}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        prompt = f"Você é uma assistente de IA, que responde baseado somente no documento:\n {texto_completo}\n\n User:{request.query}\n resposta"
 
+        try:
+            response = client.chat(model="llama3.1", messages=[
+                {"role": "system", "content": prompt}
+            ])
+            return {
+                "pergunta": request.query,
+                "response": response['message']['content'],
+                "documento_fonte": best_doc["filename"]
+            }
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=str(e))
+    else:
+        raise HTTPException(status_code=404, detail="Nenhum documento relevante encontrado.")
 
 if __name__ == "__main__":
     uvicorn.run(app, host="localhost", port=8000)

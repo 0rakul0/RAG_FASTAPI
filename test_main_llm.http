@@ -27,7 +27,7 @@ POST http://127.0.0.1:8000/query
 Content-Type: application/json
 
 {
-  "query": "O que é chunking e como ele melhora a busca semântica?"
+  "query": "quais são os principais Benefícios do FastAPI para RAG?"
 }
 
 

@@ -1,10 +1,11 @@
 # 📌 Projeto: API de Recuperação de Documentos com RAG
 
 ## 📖 Descrição
-Este projeto implementa uma API para recuperação de documentos utilizando **FastAPI**, **Sentence Transformers** para embeddings de texto, e **Ollama** para geração de respostas baseadas nos documentos mais relevantes. O sistema processa arquivos de texto, divide-os em chunks e encontra o documento mais relevante para responder às perguntas dos usuários.
+Este projeto implementa uma API para recuperação de documentos utilizando **FastAPI**, **Sentence Transformers** para embeddings de texto, e **Ollama** para geração de respostas baseadas nos documentos mais relevantes. O sistema processa arquivos de texto e PDF, divide-os em chunks e encontra o documento mais relevante para responder às perguntas dos usuários.
 
 ## 🚀 Funcionalidades
-- Carregamento automático de documentos `.txt` da pasta `data/`.
+- Carregamento automático de documentos `.txt` e `.pdf` da pasta `data/`.
+- Opção de carregar apenas arquivos `.txt`, apenas `.pdf` ou ambos.
 - Segmentação de documentos em chunks para melhor indexação.
 - Uso de **embeddings** para encontrar o documento mais relevante para uma consulta.
 - Integração com **Ollama** para geração de respostas baseadas no conteúdo do documento.
@@ -24,7 +25,7 @@ Este projeto implementa uma API para recuperação de documentos utilizando **Fa
 ## 📂 Estrutura do Projeto
 ```
 📁 projeto_rag_api
-│── 📂 data/               # Pasta contendo os arquivos de texto
+│── 📂 data/               # Pasta contendo os arquivos de texto e PDF
 │── 📜 rag.py              # rag sem llm FastAPI
 │── 📜 rag_llm.py         # rag com llm FastAPI
 │── 📜 service_document.py # Processamento dos documentos e embeddings
@@ -51,7 +52,6 @@ A API será iniciada em **http://localhost:8000**
 python rag.py
 ```
 A API será iniciada em **http://localhost:8080**
-
 
 ---
 
@@ -90,9 +90,9 @@ A API será iniciada em **http://localhost:8080**
 - Envia o documento para **Ollama** para gerar uma resposta.
 - Retorna a resposta junto com o nome do documento fonte.
 
-
 ### 📜 **`service_document.py`**
-- Carrega os arquivos `.txt` da pasta `data/`.
+- Carrega os arquivos `.txt` e `.pdf` da pasta `data/`.
+- Opção de carregar apenas `.txt`, apenas `.pdf` ou ambos.
 - Divide os documentos em chunks (parágrafos).
 - Gera embeddings usando **Sentence Transformers**.
 
@@ -100,11 +100,10 @@ A API será iniciada em **http://localhost:8080**
 
 ## 📌 Melhorias Futuras
 - Armazenamento de embeddings em um banco de dados para otimizar a busca.
-- Suporte a mais formatos de documentos (PDF, DOCX).
+- Suporte a mais formatos de documentos (DOCX, HTML).
 - Implementação de cache para evitar recomputação de embeddings.
 
 ---
 
 ## 📧 Contato
 Caso tenha dúvidas ou sugestões, sinta-se à vontade para contribuir! 😊
-
