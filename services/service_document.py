@@ -1,8 +1,8 @@
 import os
 import logging
 from sentence_transformers import SentenceTransformer
-from service_txt import load_txt_files
-from service_pdf import load_pdf_files
+from services.service_txt import load_txt_files
+from services.service_pdf import load_pdf_files
 
 # Configurar logging
 logging.basicConfig(level=logging.INFO)

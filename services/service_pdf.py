@@ -1,6 +1,6 @@
 import os
 import fitz  # PyMuPDF
-from service_txt import create_chunks
+from services.service_txt import create_chunks
 
 def extract_text_from_pdf(pdf_path):
     """Extrai texto de um arquivo PDF e retorna uma lista de dicionários com número da página e texto."""
