@@ -1,16 +1,17 @@
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from services.service_document import get_docs, get_embeddings, model_embedding, reconstruir_texto
+from services.service_document import ServiceDocument
 from sentence_transformers import util
 import logging
 
 # Configurar logging
 logging.basicConfig(level=logging.INFO)
 
+sd = ServiceDocument()
 
-docs = get_docs('txt')
-doc_embeddings = get_embeddings()
+docs = sd.get_docs('txt')
+doc_embeddings = sd.get_embeddings()
 
 class QueryRequest(BaseModel):
     query: str
@@ -21,7 +22,7 @@ app = FastAPI()
 @app.post("/query")
 async def query_rag(request: QueryRequest):
     """Busca o documento mais relevante usando embeddings e remove sobreposição."""
-    query_embedding = model_embedding.encode(request.query, convert_to_tensor=True)
+    query_embedding = sd.model_embedding.encode(request.query, convert_to_tensor=True)
 
     best_doc = None
     best_score = float("-inf")
@@ -38,7 +39,7 @@ async def query_rag(request: QueryRequest):
             best_doc = doc
 
     if best_doc:
-        text_continuo = reconstruir_texto(best_doc["chunks"])
+        text_continuo = sd.reconstruir_texto(best_doc["chunks"])
 
         return {
             "best_match": best_doc["id"],
