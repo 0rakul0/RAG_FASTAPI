@@ -5,3 +5,8 @@
 .idea/modules.xml
 .idea/RAG_FASTAPI.iml
 .idea/vcs.xml
+services/__pycache__/query_service.cpython-310.pyc
+services/__pycache__/service_document.cpython-310.pyc
+services/__pycache__/service_pdf.cpython-310.pyc
+services/__pycache__/service_txt.cpython-310.pyc
+utils/__pycache__/guardian_sail.cpython-310.pyc
