@@ -1,9 +1,8 @@
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from service_document import get_docs, get_embeddings, model_embedding, reconstruir_texto
+from services.service_document import get_docs, get_embeddings, model_embedding, reconstruir_texto
 from sentence_transformers import util
-import torch
 import logging
 
 # Configurar logging

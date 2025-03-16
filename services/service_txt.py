@@ -33,7 +33,6 @@ def create_chunks(text, chunk_size=512, overlap=128):
     for paragraph in paragraphs:
         if len(current_chunk) + len(paragraph) + 2 > chunk_size:
             chunks.append(current_chunk.strip())
-            # Mantém um overlap apenas se houver espaço suficiente
             words = current_chunk.split()
             current_chunk = " ".join(words[-(overlap // 5):]) if len(words) > overlap // 5 else ""
         current_chunk += paragraph + ". \n\n"

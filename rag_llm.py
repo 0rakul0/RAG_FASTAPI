@@ -1,67 +1,17 @@
 import uvicorn
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from pydantic import BaseModel
-from service_document import get_docs, get_embeddings, model_embedding, reconstruir_texto
-from sentence_transformers import util
-import logging
-from ollama import Client
-
-client = Client(
-    host='http://localhost:11434',
-    headers={'x-some-header': 'some-value'}
-)
-
-# Configurar logging
-logging.basicConfig(level=logging.INFO)
-
-
-docs = get_docs('txt')
-doc_embeddings = get_embeddings()
+from services.query_service import query_rag_service  # Importando o services
 
 class QueryRequest(BaseModel):
     query: str
 
-
 app = FastAPI()
-
 
 @app.post("/query")
 async def query_rag(request: QueryRequest):
-    """Busca o documento mais relevante usando embeddings."""
-    query_embedding = model_embedding.encode(request.query, convert_to_tensor=True)
-
-    best_doc = None
-    best_score = float("-inf")
-
-    # Calcular similaridade entre a query e cada documento
-    for doc in docs:
-        scores = util.cos_sim(query_embedding, doc_embeddings[doc["id"]])
-        avg_score = scores.mean().item()  # Média das similaridades dos chunks
-
-        logging.info(f"Doc {doc['id']} - Similaridade: {avg_score}")
-
-        if avg_score > best_score:
-            best_score = avg_score
-            best_doc = doc
-
-    if best_doc:
-        texto_completo = reconstruir_texto(best_doc["chunks"])
-
-        prompt = f"Você é uma assistente de IA, que responde baseado somente no documento:\n {texto_completo}\n\n User:{request.query}\n resposta"
-
-        try:
-            response = client.chat(model="llama3.1", messages=[
-                {"role": "system", "content": prompt}
-            ])
-            return {
-                "pergunta": request.query,
-                "response": response['message']['content'],
-                "documento_fonte": best_doc["filename"]
-            }
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=str(e))
-    else:
-        raise HTTPException(status_code=404, detail="Nenhum documento relevante encontrado.")
+    """Endpoint para buscar um documento relevante e gerar resposta."""
+    return query_rag_service(request.query)
 
 if __name__ == "__main__":
     uvicorn.run(app, host="localhost", port=8000)

@@ -7,7 +7,7 @@ from service_pdf import load_pdf_files
 # Configurar logging
 logging.basicConfig(level=logging.INFO)
 
-DATA_DIR = "data"
+DATA_DIR = "../data"
 
 
 def load_documents(directory, file_types=("txt", "pdf")):
